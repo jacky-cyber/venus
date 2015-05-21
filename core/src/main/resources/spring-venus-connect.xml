@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="venus.connect.channel" class="org.jgroups.JChannel">
+		<property name="name" value="VIP" />
+		<property name="receiver" ref="venus.connect.receiver" />
+	</bean>
+
+	<bean class="com.dhf.venus.connect.impl.GroupConnection" init-method="init" destroy-method="destory">
+		<constructor-arg value="VIP" />
+		<constructor-arg ref="venus.config" />
+		<constructor-arg ref="venus.connect.channel" />
+	</bean>
+
+	<bean id="venus.connect.pusher" class="com.dhf.venus.connect.impl.GroupPusher">
+		<constructor-arg ref="venus.convert" />
+		<constructor-arg ref="venus.connect.channel" />
+	</bean>
+
+	<bean id="venus.connect.receiver" class="com.dhf.venus.connect.impl.GroupReceiver">
+		<constructor-arg ref="venus.convert" />
+		<constructor-arg ref="venus.connect.interest" />
+	</bean>
+
+	<bean id="venus.connect.listener.reply" class="com.dhf.venus.connect.impl.ReplyListener" abstract="true">
+		<constructor-arg ref="venus.connect.pusher" />
+	</bean>
+
+</beans>

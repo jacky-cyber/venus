@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="venus.client.timeout" class="com.dhf.venus.client.impl.DefaultTimeout" init-method="init" destroy-method="destory">
+		<constructor-arg ref="venus.config" />
+	</bean>
+
+	<alias name="venus.client.context" alias="venus.client.register" />
+	<bean id="venus.client.context" class="com.dhf.venus.client.impl.DefaultContext" />
+
+	<bean class="com.dhf.venus.client.process.RegisterProcessor">
+		<constructor-arg ref="venus.client.register" />
+	</bean>
+
+	<bean class="com.dhf.venus.client.process.RequestProcessor">
+		<constructor-arg ref="venus.client.context" />
+		<constructor-arg ref="venus.client.action.request" />
+	</bean>
+
+</beans>

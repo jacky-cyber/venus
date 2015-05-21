@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="venus.client.action.request" class="com.dhf.venus.client.action.DefaultRequest">
+		<constructor-arg ref="venus.event.factory" />
+		<constructor-arg ref="venus.client.timeout" />
+		<constructor-arg ref="venus.connect.pusher" />
+	</bean>
+
+	<bean id="venus.client.action.refresh" class="com.dhf.venus.client.action.DefaultRefresh">
+		<constructor-arg ref="venus.event.factory" />
+		<constructor-arg ref="venus.client.timeout" />
+		<constructor-arg ref="venus.client.context" />
+		<constructor-arg ref="venus.connect.pusher" />
+	</bean>
+
+</beans>
