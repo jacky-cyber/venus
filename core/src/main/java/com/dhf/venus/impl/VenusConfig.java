@@ -20,4 +20,9 @@ public class VenusConfig extends Properties {
 			new VenusException(e);
 		}
 	}
+
+	public String getProperty(String key) {
+		String value = super.getProperty(key);
+		return value != null ? value : System.getProperty(key);
+	}
 }

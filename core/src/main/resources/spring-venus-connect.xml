@@ -5,15 +5,11 @@
     http://www.springframework.org/schema/util
 	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-	<bean id="venus.connect.channel" class="org.jgroups.JChannel">
-		<property name="name" value="VIP" />
-		<property name="receiver" ref="venus.connect.receiver" />
-	</bean>
-
-	<bean class="com.dhf.venus.connect.impl.GroupConnection" init-method="init" destroy-method="destory">
-		<constructor-arg value="VIP" />
+	<bean id="venus.connect.channel" class="com.dhf.venus.connect.impl.GroupConnection" init-method="init" destroy-method="destory">
+		<constructor-arg index="0" value="VIP" />
+		<constructor-arg index="1" value="classpath:jgroup.xml" />
 		<constructor-arg ref="venus.config" />
-		<constructor-arg ref="venus.connect.channel" />
+		<constructor-arg ref="venus.connect.receiver" />
 	</bean>
 
 	<bean id="venus.connect.pusher" class="com.dhf.venus.connect.impl.GroupPusher">

@@ -32,9 +32,15 @@ public class SampleController {
 		this.code = code;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/sample1", method = RequestMethod.GET)
 	@ResponseBody
-	public Response sample() {
+	public Response sample1() {
+		return new Response();
+	}
+
+	@RequestMapping(value = "/sample2", method = RequestMethod.GET)
+	@ResponseBody
+	public Response sample2() {
 		this.refresh.refresh();
 		return new Response();
 	}

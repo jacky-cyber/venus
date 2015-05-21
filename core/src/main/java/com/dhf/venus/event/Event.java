@@ -9,9 +9,9 @@ public interface Event {
 
 	public final static String CLIENT = "CLIENT";
 
-	public final static String CLIENT_REQ = "CLIENT_REQ";
-
 	public final static String CLIENT_ENV = "CLIENT_ENV";
+	
+	public final static String CLIENT_REQ = "CLIENT_REQ";
 
 	public final static String CLIENT_FROM = "CLIENT_FROM";
 
