@@ -8,6 +8,7 @@ import org.jgroups.View;
 
 import com.dhf.venus.connect.Interest;
 import com.dhf.venus.convert.Convert;
+import com.dhf.venus.event.Event;
 
 /**
  * @author kim 2015年5月12日
@@ -31,6 +32,9 @@ public class GroupReceiver extends ReceiverAdapter {
 	}
 
 	public void receive(Message message) {
-		this.interest.interest(this.convert.object(message.getBuffer()).from(message.getSrc()));
+		LOGGER.info("Venus receive message " + message);
+		Event event = this.convert.object(message.getBuffer()).from(message.getSrc());
+		LOGGER.info("Venus receive event " + event.dump());
+		this.interest.interest(event);
 	}
 }

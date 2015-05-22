@@ -46,6 +46,7 @@ public class CliProxyCommand implements Command {
 		public void run() {
 			while (!Thread.currentThread().isInterrupted()) {
 				try {
+					System.out.println("Input>> ");
 					CliProxyCommand.this.command(CliProxyCommand.this.console.readLine());
 				} catch (IOException e) {
 					CliProxyCommand.LOGGER.info(e.getMessage(), e);

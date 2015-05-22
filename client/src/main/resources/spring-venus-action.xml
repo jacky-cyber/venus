@@ -5,17 +5,12 @@
     http://www.springframework.org/schema/util
 	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
+	<alias name="venus.client.action.request" alias="venus.client.action.refresh" />
 	<bean id="venus.client.action.request" class="com.dhf.venus.client.action.DefaultRequest">
-		<constructor-arg ref="venus.event.factory" />
-		<constructor-arg ref="venus.client.timeout" />
 		<constructor-arg ref="venus.connect.pusher" />
-	</bean>
-
-	<bean id="venus.client.action.refresh" class="com.dhf.venus.client.action.DefaultRefresh">
 		<constructor-arg ref="venus.event.factory" />
 		<constructor-arg ref="venus.client.timeout" />
 		<constructor-arg ref="venus.client.context" />
-		<constructor-arg ref="venus.connect.pusher" />
 	</bean>
 
 </beans>

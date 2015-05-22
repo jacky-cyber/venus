@@ -1,8 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>com.dhf.venus</groupId>
-	<artifactId>core</artifactId>
+	<artifactId>venus-core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -10,7 +9,6 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<maven.project.name>core</maven.project.name>
 		<maven.project.compile.version>1.7</maven.project.compile.version>
 		<maven.project.spring.version>3.2.4.RELEASE</maven.project.spring.version>
 		<maven.project.build.sourceEncoding>UTF-8</maven.project.build.sourceEncoding>
@@ -82,7 +80,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>${maven.project.name}</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>

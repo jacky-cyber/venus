@@ -11,6 +11,20 @@
 		<maven.project.spring.version>3.2.4.RELEASE</maven.project.spring.version>
 		<maven.project.build.sourceEncoding>UTF-8</maven.project.build.sourceEncoding>
 	</properties>
+	<profiles>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<maven.venus.gossip>10.128.8.60:56789</maven.venus.gossip>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<maven.venus.gossip>127.0.0.1:56789</maven.venus.gossip>
+			</properties>
+		</profile>
+	</profiles>
 	<dependencies>
 		<!-- For Filter -->
 		<dependency>
@@ -57,7 +71,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.dhf.venus</groupId>
-			<artifactId>client</artifactId>
+			<artifactId>venus-client</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

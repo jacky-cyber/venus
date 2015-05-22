@@ -1,5 +1,7 @@
 package com.dhf.venus.connect.impl;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jgroups.Address;
 import org.jgroups.JChannel;
 import org.jgroups.Message;
@@ -13,6 +15,8 @@ import com.dhf.venus.impl.VenusException;
  * @author kim 2015年5月19日
  */
 public class GroupPusher implements Pusher {
+
+	private final static Log LOGGER = LogFactory.getLog(GroupPusher.class);
 
 	private final Convert convert;
 
@@ -32,6 +36,7 @@ public class GroupPusher implements Pusher {
 	public void push(Object dest, Event event) {
 		try {
 			this.channel.send(new Message(Address.class.cast(dest), this.convert.bytes(event.dump())));
+			LOGGER.info("Venus send " + dest + " message: " + event.dump());
 		} catch (Exception e) {
 			throw new VenusException(e);
 		}
