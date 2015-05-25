@@ -5,8 +5,23 @@
     http://www.springframework.org/schema/util
 	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
+	<bean id="venus.connect.address" class="com.dhf.venus.client.connect.ClientAddressGenerator" />
+
+	<bean id="venus.connect.listener.ack" class="com.dhf.venus.client.connect.AckListener" parent="venus.connect.listener.reply">
+		<constructor-arg ref="venus.event.factory" />
+	</bean>
+
 	<bean id="venus.connect.listener.update" class="com.dhf.venus.client.connect.UpdateListener">
 		<constructor-arg ref="venus.client.updated" />
+	</bean>
+
+	<bean id="venus.connect.listener.update.chained" class="com.dhf.venus.connect.impl.ChainedListener">
+		<constructor-arg>
+			<util:list>
+				<ref bean="venus.connect.listener.update" />
+				<ref bean="venus.connect.listener.ack" />
+			</util:list>
+		</constructor-arg>
 	</bean>
 
 	<util:map id="venus.connect.listeners">
@@ -20,7 +35,7 @@
 			<key>
 				<util:constant static-field="com.dhf.venus.event.Event.ACTION_PUSH" />
 			</key>
-			<ref bean="venus.connect.listener.update" />
+			<ref bean="venus.connect.listener.update.chained" />
 		</entry>
 	</util:map>
 

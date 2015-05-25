@@ -19,12 +19,13 @@
 		<property name="fileEncoding" value="utf-8" />
 	</bean>
 
-	<bean class="com.dhf.venus.server.start.PID" init-method="pid">
+	<bean class="com.dhf.venus.server.start.PID" init-method="init">
 		<constructor-arg ref="venus.config" />
 	</bean>
 
 	<import resource="classpath:spring-venus-core.xml" />
 	<import resource="classpath:spring-venus-mongo.xml" />
+	<import resource="classpath:spring-venus-netty.xml" />
 	<import resource="classpath:spring-venus-access.xml" />
 	<import resource="classpath:spring-venus-jgroup.xml" />
 	<import resource="classpath:spring-venus-command.xml" />

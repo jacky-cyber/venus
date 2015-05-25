@@ -1,5 +1,6 @@
 package com.dhf.venus.connect.impl;
 
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +12,7 @@ import org.apache.commons.logging.LogFactory;
 import org.jgroups.JChannel;
 import org.jgroups.Receiver;
 import org.jgroups.protocols.TCPGOSSIP;
+import org.jgroups.stack.AddressGenerator;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.core.io.Resource;
 import org.springframework.util.StringUtils;
@@ -32,13 +34,14 @@ public class GroupConnection implements FactoryBean<JChannel> {
 
 	private final String cluster;
 
-	public GroupConnection(String cluster, Resource config, Receiver receiver, Properties properties) throws Exception {
+	public GroupConnection(String cluster, Resource config, Receiver receiver, AddressGenerator generator, Properties properties) throws Exception {
 		super();
 		System.setProperty(GroupConnection.FORCE_IPV4, Boolean.TRUE.toString());
 		this.cluster = cluster;
 		this.channel = new JChannel(config.getInputStream());
 		this.channel.setReceiver(receiver);
-		this.channel.setName(properties.getProperty(Event.CLIENT));
+		this.channel.addAddressGenerator(generator);
+		this.channel.setName(properties.getProperty(Event.CLIENT) + "_" + InetAddress.getLocalHost().getHostName());
 		this.gossip(properties.getProperty(GroupConnection.CLIENT_GOSSIP));
 	}
 

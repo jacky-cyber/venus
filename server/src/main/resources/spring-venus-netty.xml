@@ -5,16 +5,14 @@
     http://www.springframework.org/schema/util
 	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-	<bean id="venus.command.chained" class="com.dhf.venus.server.command.impl.ChainedCommand">
-		<constructor-arg ref="venus.command.commands" />
+	<bean id="venus.netty.handler" class="com.dhf.venus.server.command.netty.NettyCommandHandler">
+		<constructor-arg ref="venus.command.chained" />
+		<constructor-arg value="EXIT" />
 	</bean>
 
-	<util:list id="venus.command.commands">
-		<bean class="com.dhf.venus.server.command.impl.LogCommand" />
-		<bean class="com.dhf.venus.server.command.impl.BroadcastCommand">
-			<constructor-arg ref="venus.command.convert" />
-			<constructor-arg ref="venus.connect.pusher" />
-		</bean>
-	</util:list>
+	<bean class="com.dhf.venus.server.command.netty.NettyServer" init-method="init" destroy-method="destory">
+		<constructor-arg ref="venus.netty.handler" />
+		<constructor-arg value="${netty.port}" />
+	</bean>
 
 </beans>

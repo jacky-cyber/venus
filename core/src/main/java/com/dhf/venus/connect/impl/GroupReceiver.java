@@ -28,7 +28,7 @@ public class GroupReceiver extends ReceiverAdapter {
 	}
 
 	public void viewAccepted(View view) {
-		GroupReceiver.LOGGER.info(view);
+		GroupReceiver.LOGGER.info("Current creator is:" + view.getCreator() + " managed " + view.getMembers().size() + " members");
 	}
 
 	public void receive(Message message) {

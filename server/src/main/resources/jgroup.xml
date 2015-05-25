@@ -7,7 +7,7 @@
 	<pbcast.NAKACK2 use_mcast_xmit="false" />
 	<UNICAST3 />
 	<pbcast.STABLE />
-	<pbcast.GMS />
+	<pbcast.GMS membership_change_policy="com.dhf.venus.connect.impl.GroupConditionPolicy" />
 	<MFC />
 	<FRAG2 />
 </config>

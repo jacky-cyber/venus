@@ -9,6 +9,7 @@
 		<constructor-arg index="0" value="VIP" />
 		<constructor-arg index="1" value="classpath:jgroup.xml" />
 		<constructor-arg ref="venus.config" />
+		<constructor-arg ref="venus.connect.address" />
 		<constructor-arg ref="venus.connect.receiver" />
 	</bean>
 

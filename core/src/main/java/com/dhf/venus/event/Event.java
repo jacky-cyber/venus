@@ -16,6 +16,8 @@ public interface Event {
 	public final static String CLIENT_FROM = "CLIENT_FROM";
 
 	public final static String ACTION = "ACTION";
+	
+	public final static String ACTION_ACK = "ACTION_ACK";
 
 	public final static String ACTION_PULL = "ACTION_PULL";
 

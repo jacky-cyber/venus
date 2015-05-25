@@ -21,7 +21,12 @@ public class PID {
 		this.properties = properties;
 	}
 
-	public void pid() throws IOException {
-		FileUtils.write(new File(this.properties.get(PID.PATH).toString()), ManagementFactory.getRuntimeMXBean().getName().replaceFirst("@.*", ""));
+	public void init() throws IOException {
+		File pid = new File(this.properties.get(PID.PATH).toString());
+		try {
+			FileUtils.write(pid, ManagementFactory.getRuntimeMXBean().getName().replaceFirst("@.*", ""));
+		} finally {
+			pid.deleteOnExit();
+		}
 	}
 }

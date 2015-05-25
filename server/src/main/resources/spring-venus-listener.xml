@@ -5,15 +5,27 @@
     http://www.springframework.org/schema/util
 	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
+	<bean id="venus.connect.address" class="com.dhf.venus.server.connect.ServerAddressGenerator" />
+
+	<bean id="venus.connect.listener.pull" class="com.dhf.venus.server.connect.PullListener" parent="venus.connect.listener.reply">
+		<constructor-arg ref="venus.event.factory" />
+		<constructor-arg ref="venus.acccess" />
+	</bean>
+
+	<bean id="venus.connect.listener.ack" class="com.dhf.venus.server.connect.AckListener" />
+
 	<util:map id="venus.connect.listeners">
 		<entry>
 			<key>
 				<util:constant static-field="com.dhf.venus.event.Event.ACTION_PULL" />
 			</key>
-			<bean class="com.dhf.venus.server.connect.PushConfigsListener" parent="venus.connect.listener.reply">
-				<constructor-arg ref="venus.event.factory" />
-				<constructor-arg ref="venus.acccess" />
-			</bean>
+			<ref bean="venus.connect.listener.pull" />
+		</entry>
+		<entry>
+			<key>
+				<util:constant static-field="com.dhf.venus.event.Event.ACTION_ACK" />
+			</key>
+			<ref bean="venus.connect.listener.ack" />
 		</entry>
 	</util:map>
 

@@ -1,12 +1,11 @@
 package com.dhf.venus.client.connect;
 
-import java.util.Properties;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.dhf.venus.connect.impl.DefaultInterest;
 import com.dhf.venus.event.Event;
+import com.dhf.venus.impl.VenusConfig;
 
 /**
  * @author kim 2015年5月19日
@@ -19,9 +18,9 @@ public class ClientInterest extends DefaultInterest {
 
 	private final String env;
 
-	public ClientInterest(String server, Properties properties) {
+	public ClientInterest(String server, VenusConfig config) {
 		this.server = server;
-		this.env = properties.getProperty(Event.CLIENT_ENV);
+		this.env = config.getProperty(Event.CLIENT_ENV);
 	}
 
 	@Override
