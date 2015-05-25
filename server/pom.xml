@@ -14,7 +14,7 @@
 		<maven.project.entry>com.dhf.venus.server.start.ServerMain</maven.project.entry>
 		<maven.netty.port>56788</maven.netty.port>
 		<maven.jgroup.gossip.port>56789</maven.jgroup.gossip.port>
-		<maven.jgroup.gossip.host>0.0.0.0[${maven.jgroup.gossip.port}]</maven.jgroup.gossip.host>
+		<maven.jgroup.gossip.host>0.0.0.0[${maven.jgroup.gossip.port}],10.128.8.60[56789]</maven.jgroup.gossip.host>
 	</properties>
 	<repositories>
 		<repository>

@@ -11,13 +11,13 @@ import com.dhf.venus.server.command.CommandConvert;
 /**
  * @author kim 2015年5月22日
  */
-public class ChainedPushConvert implements CommandConvert {
+public class ChainedConvert implements CommandConvert {
 
-	private final static Log LOGGER = LogFactory.getLog(ChainedPushConvert.class);
+	private final static Log LOGGER = LogFactory.getLog(ChainedConvert.class);
 
 	private final List<CommandConvert> converts;
 
-	public ChainedPushConvert(List<CommandConvert> converts) {
+	public ChainedConvert(List<CommandConvert> converts) {
 		super();
 		this.converts = converts;
 	}
@@ -27,7 +27,7 @@ public class ChainedPushConvert implements CommandConvert {
 		for (CommandConvert convert : this.converts) {
 			Event event = convert.convert(command);
 			if (event != null) {
-				ChainedPushConvert.LOGGER.debug("Event after convert: " + convert);
+				ChainedConvert.LOGGER.debug("Event after convert: " + convert);
 				return event;
 			}
 		}

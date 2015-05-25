@@ -12,7 +12,7 @@
 	<util:list id="venus.command.commands">
 		<bean class="com.dhf.venus.server.command.impl.LogCommand" />
 		<bean class="com.dhf.venus.server.command.impl.BroadcastCommand">
-			<constructor-arg ref="venus.command.convert" />
+			<constructor-arg ref="venus.command.converts" />
 			<constructor-arg ref="venus.connect.pusher" />
 		</bean>
 	</util:list>

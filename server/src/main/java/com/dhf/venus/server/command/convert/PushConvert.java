@@ -9,13 +9,13 @@ import com.dhf.venus.server.command.CommandConvert;
 /**
  * @author kim 2015年5月21日
  */
-public class EventPushConvert implements CommandConvert {
+public class PushConvert implements CommandConvert {
 
 	private final Access access;
 
 	private final EventFactory factory;
 
-	public EventPushConvert(Access access, EventFactory factory) {
+	public PushConvert(Access access, EventFactory factory) {
 		super();
 		this.access = access;
 		this.factory = factory;
@@ -24,7 +24,7 @@ public class EventPushConvert implements CommandConvert {
 	@Override
 	public Event convert(String command) {
 		String[] params = command.split(" ");
-		Configs configs =this.access.write(params[0].trim(), params[1].trim(), params[2].trim());
+		Configs configs = this.access.write(params[0].trim(), params[1].trim(), params[2].trim());
 		return this.factory.generate(Event.ACTION_PUSH).data(configs.configs()).env(configs.env());
 	}
 }

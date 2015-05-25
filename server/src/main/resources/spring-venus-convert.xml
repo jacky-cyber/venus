@@ -5,12 +5,22 @@
     http://www.springframework.org/schema/util
 	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-	<bean id="venus.command.convert" class="com.dhf.venus.server.command.convert.ChainedPushConvert">
-		<constructor-arg ref="venus.command.converts" />
+	<bean id="venus.command.converts" class="com.dhf.venus.server.command.convert.PrefixConvert">
+		<constructor-arg>
+			<util:map>
+				<entry key="SET">
+					<ref bean="venus.command.convert.push.chained" />
+				</entry>
+			</util:map>
+		</constructor-arg>
 	</bean>
 
-	<util:list id="venus.command.converts">
-		<bean class="com.dhf.venus.server.command.convert.EventPushConvert">
+	<bean id="venus.command.convert.push.chained" class="com.dhf.venus.server.command.convert.ChainedConvert">
+		<constructor-arg ref="venus.command.convert.push" />
+	</bean>
+
+	<util:list id="venus.command.convert.push">
+		<bean class="com.dhf.venus.server.command.convert.PushConvert">
 			<constructor-arg ref="venus.acccess" />
 			<constructor-arg ref="venus.event.factory" />
 		</bean>
